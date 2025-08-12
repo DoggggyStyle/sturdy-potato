@@ -1,4 +1,4 @@
-name: Build (Godot 4.4) + Deploy Web
+name: Build (Godot 4.4.1) → Win/Linux/Web + Pages
 
 on:
   push:
@@ -12,40 +12,53 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Godot 4.4 headless + export templates
-        run: |
-          set -e
-          VER=4.4
-          # Godot CLI
-          wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_linux.x86_64.zip -O godot.zip
-          unzip -q godot.zip
-          sudo mv Godot_v${VER}-stable_linux.x86_64 /usr/local/bin/godot4
-          sudo chmod +x /usr/local/bin/godot4
-          godot4 --version
-          # Export templates（放到 Godot 期待的目录）
-          mkdir -p ~/.local/share/godot/export_templates/${VER}.stable/
-          wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_export_templates.tpz -O t.tpz
-          unzip -q t.tpz -d ~/.local/share/godot/export_templates/${VER}.stable/
+      # 安装 Godot 4.4.1 无头版 + 导出模板（用 godot-builds 官方 Release）
+      - - name: Install Godot CLI & export templates
+  run: |
+    set -e
+    VER=4.4.1
+    wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_linux.x86_64.zip -O godot.zip
+    unzip -q godot.zip
+    sudo mv Godot_v${VER}-stable_linux.x86_64 /usr/local/bin/godot
+    sudo chmod +x /usr/local/bin/godot
+    godot --version
 
+    mkdir -p ~/.local/share/godot/export_templates/${VER}.stable/
+    wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_export_templates.tpz -O t.tpz
+    unzip -q t.tpz -d ~/.local/share/godot/export_templates/${VER}.stable/
+    echo "Templates under:" ~/.local/share/godot/export_templates/${VER}.stable/
+    ls -l ~/.local/share/godot/export_templates/${VER}.stable/
+
+
+      # 确认工程可加载（你的 project/ 下有 project.godot）
       - name: Verify project loads
-        run: godot4 --headless --path project --quit
+        run: godot --headless --path project --quit
 
-      - name: Export Linux (X11)
+      # 导出 Windows（预设名需与 export_presets.cfg 完全一致：Windows Desktop）
+      - name: Export Windows
+        run: |
+          mkdir -p Build/Windows
+          godot --headless --path project --export-release "Windows Desktop" ../Build/Windows/UltimateHacker.exe
+
+      # 导出 Linux（预设名：Linux/X11）
+      - name: Export Linux
         run: |
           mkdir -p Build/Linux
-          godot4 --headless --path project --export-release "Linux/X11" ../Build/Linux/UltimateHacker.x86_64
+          godot --headless --path project --export-release "Linux/X11" ../Build/Linux/UltimateHacker.x86_64
           chmod +x Build/Linux/UltimateHacker.x86_64
 
+      # 导出 Web（需要你有 Web 预设；下面有补丁）
       - name: Export Web
         run: |
           mkdir -p Build/Web
-          godot4 --headless --path project --export-release "Web" ../Build/Web/index.html
+          godot --headless --path project --export-release "Web" ../Build/Web/index.html
 
-      - name: Upload artifacts (Linux + Web)
+      - name: Upload artifacts (Win + Linux + Web)
         uses: actions/upload-artifact@v4
         with:
           name: builds
           path: |
+            Build/Windows
             Build/Linux
             Build/Web
 

@@ -45,3 +45,8 @@ ECHO ´¦ÓÚ¹Ø±Õ×´Ì¬¡£
 .local/share/godot/export_templates/
 **/export_templates/
 **/*.tpz
+
+# Godot export templates & big archives
+.local/share/godot/export_templates/
+**/export_templates/
+**/*.tpz

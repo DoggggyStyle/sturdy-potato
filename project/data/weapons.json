@@ -1,0 +1,4 @@
+[
+    {"id":"katana","name":"折叠武士刃","damage": {"base":28,"kind":"CUT"}, "crit":0.15},
+    {"id":"sledge","name":"液压锤","damage": {"base":40,"kind":"BLUNT"}}
+]

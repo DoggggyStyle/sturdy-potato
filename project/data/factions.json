@@ -1,0 +1,4 @@
+[
+    {"id":"megacorp","name":"兆能集团","attitude":{"street":-20,"police":+10},"style":"巴黎高定赛博"},
+    {"id":"street","name":"街巷自由团","attitude":{"megacorp":-20,"police":-30},"style":"涂鸦朋克"}
+]

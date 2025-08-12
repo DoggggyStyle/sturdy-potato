@@ -62,3 +62,19 @@ deploy-pages:
       with:
         name: Windows
         path: Build/Windows
+
+- name: Export Windows
+  run: |
+    mkdir -p Build/Windows
+    godot --headless --path project --export-release "Windows Desktop" ../Build/Windows/UltimateHacker.exe
+
+- name: Export Linux
+  run: |
+    mkdir -p Build/Linux
+    godot --headless --path project --export-release "Linux/X11" ../Build/Linux/UltimateHacker.x86_64
+    chmod +x Build/Linux/UltimateHacker.x86_64
+
+- name: Export Web
+  run: |
+    mkdir -p Build/Web
+    godot --headless --path project --export-release "Web" ../Build/Web/index.html

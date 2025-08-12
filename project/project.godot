@@ -28,3 +28,6 @@ rts_back={"deadzone":0.5,"events":[{"type":"key","keycode":"S"}]}
 rts_fast={"deadzone":0.5,"events":[{"type":"key","keycode":"Shift"}]}
 rts_slow={"deadzone":0.5,"events":[{"type":"key","keycode":"Alt"}]}
 RTSBootstrap="*res://scripts/bootstrap/RTSBootstrap.gd"
+[application]
+config/name="Ultimate Hacker"
+run/main_scene="res://scenes/Main.tscn"

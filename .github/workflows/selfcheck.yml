@@ -1,0 +1,23 @@
+name: SelfCheck
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify files
+        run: |
+          set -e
+          test -f project/project.godot
+          test -f project/scenes/CityBlock.tscn
+          test -f project/scripts/camera/RTSCamera.gd
+          test -f project/scripts/player/PlayerPawn.gd
+          test -f project/scripts/systems/GraphicsManager.gd
+          echo "OK"
+      - name: Summary
+        run: |
+          echo "## SelfCheck ✅ 通过" >> $GITHUB_STEP_SUMMARY

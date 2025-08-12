@@ -1,0 +1,70 @@
+name: Build (Godot 4.4) + Deploy Web
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Godot 4.4 headless + export templates
+        run: |
+          set -e
+          VER=4.4
+          # Godot CLI
+          wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_linux.x86_64.zip -O godot.zip
+          unzip -q godot.zip
+          sudo mv Godot_v${VER}-stable_linux.x86_64 /usr/local/bin/godot4
+          sudo chmod +x /usr/local/bin/godot4
+          godot4 --version
+          # Export templates（放到 Godot 期待的目录）
+          mkdir -p ~/.local/share/godot/export_templates/${VER}.stable/
+          wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_export_templates.tpz -O t.tpz
+          unzip -q t.tpz -d ~/.local/share/godot/export_templates/${VER}.stable/
+
+      - name: Verify project loads
+        run: godot4 --headless --path project --quit
+
+      - name: Export Linux (X11)
+        run: |
+          mkdir -p Build/Linux
+          godot4 --headless --path project --export-release "Linux/X11" ../Build/Linux/UltimateHacker.x86_64
+          chmod +x Build/Linux/UltimateHacker.x86_64
+
+      - name: Export Web
+        run: |
+          mkdir -p Build/Web
+          godot4 --headless --path project --export-release "Web" ../Build/Web/index.html
+
+      - name: Upload artifacts (Linux + Web)
+        uses: actions/upload-artifact@v4
+        with:
+          name: builds
+          path: |
+            Build/Linux
+            Build/Web
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: builds
+          path: .
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Web content
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Build/Web
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v4

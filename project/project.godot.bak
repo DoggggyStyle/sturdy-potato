@@ -1,12 +1,21 @@
-[gd_project]
-config_version=5
-[application]
-config/name="OpenWorldRTS"
-config/description="RTS camera test project"
-config/run/main_scene="res://scenes/CityBlock.tscn"
-[display]
-window/size/width=1280
-window/size/height=720
-[rendering]
-renderer/rendering_method="forward_plus"
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
+config_version=5
+
+[application]
+
+config/name="Ultimate Hacker"
+run/main_scene="res://scenes/ui/GraphicsMenu.tscn"
+config/features=PackedStringArray("4.4")
+
+[autoload]
+
+GraphicsManager="res://scripts/systems/GraphicsManager.gd"
+HDManager="res://scripts/systems/HDManager.gd"
+WantedSystem="res://scripts/systems/WantedSystem.gd"

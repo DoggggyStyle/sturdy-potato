@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/LUT_QuickPanel.gd" id=1]
+
+[node name="LUT_QuickPanel" type="Control"]
+offset_left = 16.0
+offset_top = 64.0
+script = ExtResource( 1 )

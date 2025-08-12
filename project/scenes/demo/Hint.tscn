@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[node name="Hint" type="RichTextLabel"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 560.0
+offset_bottom = 220.0
+bbcode_enabled = true
+text = "[b]Playground[/b]\nWASD/↑↓←→ 移动，Shift=加速，Q/E=转向。\n菜单：设置→图形；UI 面板：PostFX_Studio、LUT_QuickPanel。"

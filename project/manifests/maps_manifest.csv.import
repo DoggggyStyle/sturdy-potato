@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ebg5f4cxkqk4"
+
+[deps]
+
+files=["res://manifests/maps_manifest.variant.translation"]
+
+source_file="res://manifests/maps_manifest.csv"
+dest_files=["res://manifests/maps_manifest.variant.translation"]
+
+[params]
+
+compress=true
+delimiter=0

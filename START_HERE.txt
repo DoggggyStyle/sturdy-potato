@@ -1,0 +1,16 @@
+Ultimate Hacker — All‑In v1.7 (Text‑Only, No‑AI, PostFX Studio + Cinema)
+
+新增：
+- LUT 2D Strip 系统（非 AI）与四套创意 LUT：RunwayGold / ChromeBlue / GritAmber / MonoSilver
+- 电影机摄像工具：镜头呼吸（FOV）、微抖（手持感）
+- 可选轻量 DOF（景深）着色器
+- 高级后期叠栈场景：`PostFX_Stack_Advanced.tscn`
+- 快速 LUT 面板：`scenes/ui/LUT_QuickPanel.tscn`
+
+用法：
+1) 实例化 `PostFX_Stack_Advanced.tscn`；将 `PostFXManager.stack_path` 指向它。
+2) 在开发 UI 放入 `PostFX_Studio.tscn` 与 `LUT_QuickPanel.tscn`，快速切换预设与 LUT。
+3) 在角色摄像机上挂 `CineCameraRig.gd`，开启呼吸/微抖；性能档位可自动关闭或降低幅度。
+4) 需要景深时调用：`PostFXManager.enable_dof(true, focus=0.52, strength=1.0)`；低配建议关闭。
+
+所有 LUT 与纹理均由代码生成，0% AI。

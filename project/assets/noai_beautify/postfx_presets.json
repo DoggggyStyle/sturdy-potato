@@ -1,0 +1,118 @@
+{
+  "Performance": {
+    "exposure": 1.0,
+    "contrast": 1.0,
+    "saturation": 1.0,
+    "bloom_threshold": 1.2,
+    "bloom_intensity": 0.15,
+    "bloom_blur": 1.2,
+    "grain_strength": 0.06,
+    "vignette": 0.1,
+    "vignette_soft": 0.4,
+    "bars": 0.0,
+    "glitch_amount": 0.0,
+    "scanlines": 0.0
+  },
+  "Balanced": {
+    "exposure": 1.05,
+    "contrast": 1.1,
+    "saturation": 1.05,
+    "bloom_threshold": 1.1,
+    "bloom_intensity": 0.25,
+    "bloom_blur": 2.0,
+    "grain_strength": 0.1,
+    "vignette": 0.18,
+    "vignette_soft": 0.45,
+    "bars": 0.02,
+    "glitch_amount": 0.0,
+    "scanlines": 0.0
+  },
+  "Haute": {
+    "exposure": 1.08,
+    "contrast": 1.12,
+    "saturation": 1.06,
+    "bloom_threshold": 1.0,
+    "bloom_intensity": 0.35,
+    "bloom_blur": 2.5,
+    "grain_strength": 0.08,
+    "vignette": 0.14,
+    "vignette_soft": 0.5,
+    "bars": 0.05,
+    "glitch_amount": 0.0,
+    "scanlines": 0.0
+  },
+  "Noir": {
+    "exposure": 0.95,
+    "contrast": 1.2,
+    "saturation": 0.85,
+    "bloom_threshold": 1.4,
+    "bloom_intensity": 0.12,
+    "bloom_blur": 1.2,
+    "grain_strength": 0.14,
+    "vignette": 0.24,
+    "vignette_soft": 0.5,
+    "bars": 0.08,
+    "glitch_amount": 0.0,
+    "scanlines": 0.2
+  },
+  "Wasteland": {
+    "exposure": 1.0,
+    "contrast": 1.08,
+    "saturation": 1.02,
+    "bloom_threshold": 1.2,
+    "bloom_intensity": 0.22,
+    "bloom_blur": 2.2,
+    "grain_strength": 0.12,
+    "vignette": 0.2,
+    "vignette_soft": 0.45,
+    "bars": 0.03,
+    "glitch_amount": 0.0,
+    "scanlines": 0.05
+  },
+  "BossIntro": {
+    "exposure": 1.1,
+    "contrast": 1.25,
+    "saturation": 1.1,
+    "bloom_threshold": 0.9,
+    "bloom_intensity": 0.5,
+    "bloom_blur": 3.0,
+    "grain_strength": 0.16,
+    "vignette": 0.26,
+    "vignette_soft": 0.5,
+    "bars": 0.12,
+    "glitch_amount": 0.35,
+    "scanlines": 0.15
+  },
+  "StealthNight": {
+    "exposure": 0.9,
+    "contrast": 1.05,
+    "saturation": 0.9,
+    "bloom_threshold": 1.6,
+    "bloom_intensity": 0.08,
+    "bloom_blur": 1.0,
+    "grain_strength": 0.06,
+    "vignette": 0.18,
+    "vignette_soft": 0.6,
+    "bars": 0.0,
+    "glitch_amount": 0.0,
+    "scanlines": 0.0
+  },
+  "RunwayGold": {
+    "lut": "res://assets/noai_beautify/luts_strip/runway_gold_lut32_strip.png",
+    "dof": false
+  },
+  "ChromeBlue": {
+    "lut": "res://assets/noai_beautify/luts_strip/chrome_blue_lut32_strip.png",
+    "dof": false
+  },
+  "GritAmber": {
+    "lut": "res://assets/noai_beautify/luts_strip/grit_amber_lut32_strip.png",
+    "dof": true,
+    "dof_focus": 0.52,
+    "dof_strength": 1.0
+  },
+  "MonoSilver": {
+    "lut": "res://assets/noai_beautify/luts_strip/mono_silver_lut32_strip.png",
+    "dof": false
+  }
+}

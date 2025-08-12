@@ -1,0 +1,20 @@
+{
+  "medline_alpha": {
+    "from": "reactor_depths",
+    "to": "inner_city_sector7",
+    "item": "med",
+    "active": true
+  },
+  "food_beta": {
+    "from": "outer_mines",
+    "to": "slum_market",
+    "item": "food",
+    "active": true
+  },
+  "ore_gamma": {
+    "from": "outer_mines",
+    "to": "industrial_belt",
+    "item": "ore",
+    "active": true
+  }
+}

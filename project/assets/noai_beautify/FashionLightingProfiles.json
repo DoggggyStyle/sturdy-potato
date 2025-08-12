@@ -1,0 +1,20 @@
+{
+  "t_stage": {
+    "key_color": "#7a3cff",
+    "fill_color": "#ffd2e1",
+    "rim_color": "#00e6b8",
+    "intensity": 1.3
+  },
+  "noir_alley": {
+    "key_color": "#2bb0ff",
+    "fill_color": "#0b0f14",
+    "rim_color": "#ff2b72",
+    "intensity": 0.9
+  },
+  "wasteland_dusk": {
+    "key_color": "#ff9a3c",
+    "fill_color": "#8a5a2b",
+    "rim_color": "#2b6c7f",
+    "intensity": 1.1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "origin_myth": {
+    "ids": [
+      "o1",
+      "o2",
+      "o3",
+      "o4"
+    ],
+    "owned": {},
+    "reward": {
+      "perk": "insider_memory"
+    }
+  },
+  "nexus_logs": {
+    "ids": [
+      "n1",
+      "n2",
+      "n3",
+      "n4",
+      "n5"
+    ],
+    "owned": {},
+    "reward": {
+      "quest": "open_nexus_gate"
+    }
+  }
+}

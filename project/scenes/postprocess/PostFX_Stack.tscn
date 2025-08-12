@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Shader" path="res://assets/noai_beautify/shaders/suite/color_grade.gdshader" id=1]
+[ext_resource type="Shader" path="res://assets/noai_beautify/shaders/suite/bloom_prefilter.gdshader" id=2]
+[ext_resource type="Shader" path="res://assets/noai_beautify/shaders/suite/film_grain.gdshader" id=3]
+[ext_resource type="Shader" path="res://assets/noai_beautify/shaders/suite/vignette_bars.gdshader" id=4]
+[ext_resource type="Shader" path="res://assets/noai_beautify/shaders/suite/chroma_glitch.gdshader" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 5 )
+
+[node name="PostFX_Stack" type="CanvasLayer"]
+layer = 99
+
+[node name="Color" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+material = SubResource( 1 )
+
+[node name="Bloom" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+material = SubResource( 2 )
+
+[node name="Grain" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+material = SubResource( 3 )
+
+[node name="VignetteBars" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+material = SubResource( 4 )
+
+[node name="ChromaGlitch" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+material = SubResource( 5 )

@@ -1,0 +1,29 @@
+{
+  "steam_depots": [
+    {
+      "id": "base_game",
+      "desc": "Core game (text-only)",
+      "includes": [
+        "base content",
+        "district packs",
+        "loc text packs"
+      ]
+    },
+    {
+      "id": "optional_hd",
+      "desc": "HD texture pack",
+      "includes": [
+        "hd_textures.pck"
+      ]
+    },
+    {
+      "id": "workshop_tools",
+      "desc": "Workshop authoring tools",
+      "includes": [
+        "templates",
+        "docs"
+      ]
+    }
+  ],
+  "notes": "Ship base game <25GB; optional HD pack takes you near 30GB when installed."
+}

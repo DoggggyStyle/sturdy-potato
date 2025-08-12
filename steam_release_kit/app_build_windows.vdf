@@ -1,0 +1,12 @@
+"appbuild"
+{
+	"appid"		"YOUR_APP_ID"
+	"desc"		"Ultimate Hacker build"
+	"buildoutput"	"../steam_build_output"
+	"contentroot"	"../Build/Windows"
+	"setlive"		""
+	"depots"
+	{
+		"YOUR_DEPOT_ID" "depot_build.vdf"
+	}
+}

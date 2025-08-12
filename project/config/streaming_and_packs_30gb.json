@@ -1,0 +1,33 @@
+{
+  "streaming": {
+    "music_paths": [
+      "res://audio/music/"
+    ],
+    "video_paths": [
+      "res://video/"
+    ]
+  },
+  "packs": {
+    "districts": [
+      "res://packs/district_slums.pck",
+      "res://packs/district_industrial.pck",
+      "res://packs/district_uptown.pck",
+      "res://packs/district_wasteland.pck",
+      "res://packs/district_underground.pck",
+      "res://packs/district_harbor.pck"
+    ],
+    "language": [
+      "res://packs/loc_cn.pck",
+      "res://packs/loc_en.pck",
+      "res://packs/loc_jp.pck"
+    ],
+    "optional_hd": [
+      "res://packs/hd_textures.pck"
+    ]
+  },
+  "export": {
+    "split_pck_mb": 4096,
+    "compress_mode": "lossless",
+    "only_used": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "noir_jazz": {
+    "base": "res://audio/demo/noir_base.ogg",
+    "drums": "res://audio/demo/noir_brush.ogg",
+    "lead": "res://audio/demo/sax_lead.ogg",
+    "fx": ""
+  },
+  "neo_folk": {
+    "base": "res://audio/demo/erhu_pad.ogg",
+    "drums": "res://audio/demo/frame_drum.ogg",
+    "lead": "res://audio/demo/suona_calls.ogg",
+    "fx": ""
+  },
+  "haute": {
+    "base": "res://audio/demo/haute_pad.ogg",
+    "drums": "res://audio/demo/haute_kick.ogg",
+    "lead": "res://audio/demo/harp_frag.ogg",
+    "fx": ""
+  }
+}

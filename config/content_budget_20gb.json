@@ -1,0 +1,57 @@
+{
+  "target_install_gb": 20.0,
+  "reserve_overhead_gb": 1.0,
+  "content_buckets": [
+    {
+      "name": "Music (OGG/OPUS)",
+      "target_gb": 3.0,
+      "notes": "~60 tracks, avg 3 min, 160 kbps OPUS; streamed"
+    },
+    {
+      "name": "Voice-Over (CN/EN selectable)",
+      "target_gb": 4.0,
+      "notes": "Main story VO + barks; use OPUS 128 kbps; language packs split"
+    },
+    {
+      "name": "SFX Library",
+      "target_gb": 1.2,
+      "notes": "~2500 SFX, OGG q4; shareable across gameplay"
+    },
+    {
+      "name": "Sprites/TileSets/Portraits",
+      "target_gb": 3.6,
+      "notes": "2D pixel art at 1x/2x variants; BC7 for desktop, ETC2 for Vulkan mobile (optional)"
+    },
+    {
+      "name": "Maps & Prefabs",
+      "target_gb": 2.0,
+      "notes": "Tilemaps, prefabs, lightmaps; chunked per-district"
+    },
+    {
+      "name": "Cutscenes (webm vp9)",
+      "target_gb": 2.4,
+      "notes": "8–10 short cinematics; 1080p @ 4–6 Mbps"
+    },
+    {
+      "name": "UI/Fonts/Localization",
+      "target_gb": 0.8,
+      "notes": "Icon atlases, bitmap fonts per language"
+    },
+    {
+      "name": "Shaders/Materials/FX Atlases",
+      "target_gb": 0.5,
+      "notes": "Packed FX sheets, no duplication"
+    },
+    {
+      "name": "Mods/Workshop Examples",
+      "target_gb": 0.9,
+      "notes": "Sample maps/quests/scripts for creators"
+    },
+    {
+      "name": "Buffer/Unforeseen",
+      "target_gb": 0.6,
+      "notes": "safety margin inside content buckets"
+    }
+  ],
+  "total_gb": 20.0
+}

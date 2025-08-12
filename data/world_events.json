@@ -1,0 +1,20 @@
+[
+  {
+    "id": "riot_slum_n1",
+    "type": "riot",
+    "region": "slum_n1",
+    "effect": "+heat -stability"
+  },
+  {
+    "id": "market_crash",
+    "type": "economy",
+    "region": "inner_city_sector3",
+    "effect": "price_drop legal goods"
+  },
+  {
+    "id": "toxic_spread",
+    "type": "hazard",
+    "region": "inner_city_ring",
+    "effect": "requires_mask"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "palette": {
+    "bg": "#0b0f14",
+    "accent": "#7a3cff",
+    "lux": "#ffd2e1",
+    "emerald": "#00e6b8"
+  },
+  "lights": {
+    "t_stage": {
+      "type": "beam",
+      "color": "#7a3cff"
+    },
+    "side_soft": {
+      "type": "soft",
+      "color": "#ffd2e1"
+    }
+  },
+  "materials": {
+    "chrome": {
+      "roughness": 0.1
+    },
+    "velvet": {
+      "roughness": 0.8,
+      "specular": 0.2
+    }
+  }
+}

@@ -1,0 +1,21 @@
+# Godot caches
+.godot/
+.import/
+ECHO 处于关闭状态。
+# Local/export builds
+Build/
+Export/
+*.pck
+*.zip
+*.exe
+*.dll
+ECHO 处于关闭状态。
+# Temporary / OS junk
+*.tmp
+*.log
+Thumbs.db
+.DS_Store
+ECHO 处于关闭状态。
+# IDE
+.vs/
+.vscode/

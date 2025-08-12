@@ -1,0 +1,50 @@
+{
+  "Core": [
+    "OpenWorldTraversal",
+    "Combat_Melee",
+    "Combat_Ranged",
+    "Hacking",
+    "Stealth",
+    "PoliceWantedLevel",
+    "Permadeath",
+    "StoryDeathMode"
+  ],
+  "Systems": [
+    "Dismemberment",
+    "LimbInjury",
+    "SurvivalNeeds",
+    "Economy_Dynamic",
+    "Logistics_Disruption",
+    "Factions_Expansion",
+    "Boss_ChainReactions"
+  ],
+  "Narrative": [
+    "TextOnlyDialogue",
+    "MemeDialect",
+    "CulturalStrataVoices",
+    "PersonalityDrivenTalk",
+    "QuestGenerator_Personalized",
+    "KeyNPC_Arcs"
+  ],
+  "Aesthetics": [
+    "ParisFashionVisuals",
+    "LayeredMusic_CyberJazz_Erhu_Suona",
+    "FestivalEvents_LightingMusic"
+  ],
+  "PlayerGrowth": [
+    "Cyberware_Modular",
+    "Appearance_HauteCouture",
+    "Base_BuildUpgradeDecor",
+    "Legacy_Multirun"
+  ],
+  "Community": [
+    "Workshop_LoadPacks",
+    "Workshop_Templates",
+    "ModManager_UI"
+  ],
+  "Ops": [
+    "GraphicsProfiles",
+    "30GB_PackPlan",
+    "Optional_HD_Pack"
+  ]
+}

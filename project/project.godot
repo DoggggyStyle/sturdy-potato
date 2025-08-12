@@ -1,0 +1,12 @@
+[gd_project]
+config_version=5
+[application]
+config/name="OpenWorldRTS"
+config/description="RTS camera test project"
+config/run/main_scene="res://scenes/CityBlock.tscn"
+[display]
+window/size/width=1280
+window/size/height=720
+[rendering]
+renderer/rendering_method="forward_plus"
+

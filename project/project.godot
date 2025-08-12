@@ -19,3 +19,12 @@ config/features=PackedStringArray("4.4")
 GraphicsManager="res://scripts/systems/GraphicsManager.gd"
 HDManager="res://scripts/systems/HDManager.gd"
 WantedSystem="res://scripts/systems/WantedSystem.gd"
+
+[input]
+rts_left={"deadzone":0.5,"events":[{"type":"key","keycode":"A"}]}
+rts_right={"deadzone":0.5,"events":[{"type":"key","keycode":"D"}]}
+rts_forward={"deadzone":0.5,"events":[{"type":"key","keycode":"W"}]}
+rts_back={"deadzone":0.5,"events":[{"type":"key","keycode":"S"}]}
+rts_fast={"deadzone":0.5,"events":[{"type":"key","keycode":"Shift"}]}
+rts_slow={"deadzone":0.5,"events":[{"type":"key","keycode":"Alt"}]}
+RTSBootstrap="*res://scripts/bootstrap/RTSBootstrap.gd"

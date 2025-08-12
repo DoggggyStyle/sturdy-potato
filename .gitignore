@@ -19,3 +19,9 @@ ECHO ´¦ÓÚ¹Ø±Õ×´Ì¬¡£
 # IDE
 .vs/
 .vscode/
+
+# Godot export templates & big archives
+.local/share/godot/export_templates/
+**/export_templates/
+**/*.tpz
+

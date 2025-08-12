@@ -1,0 +1,32 @@
+{
+  "slum_n1": {
+    "owner": "black_market",
+    "stability": 35,
+    "heat": 60
+  },
+  "slum_market": {
+    "owner": "black_market",
+    "stability": 45,
+    "heat": 55
+  },
+  "inner_city_sector7": {
+    "owner": "merchant_council",
+    "stability": 70,
+    "heat": 20
+  },
+  "reactor_depths": {
+    "owner": "corporate_guard",
+    "stability": 80,
+    "heat": 15
+  },
+  "outer_mines": {
+    "owner": "miners_guild",
+    "stability": 50,
+    "heat": 40
+  },
+  "toxic_belt": {
+    "owner": "scrapborn_union",
+    "stability": 30,
+    "heat": 65
+  }
+}

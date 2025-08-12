@@ -1,0 +1,8 @@
+{
+  "use_voiceover": false,
+  "subtitle_always_on": true,
+  "subtitle_font_scale": 1.0,
+  "subtitle_bg_opacity": 0.35,
+  "dialogue_music_cues": true,
+  "allow_workshop_vo": true
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "player": {
+    "pos": [
+      200,
+      200
+    ],
+    "hp": 100,
+    "gear": [
+      "vib_blade",
+      "light_armor"
+    ]
+  },
+  "region": "slum_market",
+  "notoriety": {
+    "slum_market": 10
+  },
+  "flags": {
+    "tutorial_done": true
+  }
+}

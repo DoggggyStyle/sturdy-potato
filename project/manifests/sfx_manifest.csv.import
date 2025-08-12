@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://2oweewjigf44"
+
+[deps]
+
+files=["res://manifests/sfx_manifest.category.translation", "res://manifests/sfx_manifest.format.translation", "res://manifests/sfx_manifest.settings.translation"]
+
+source_file="res://manifests/sfx_manifest.csv"
+dest_files=["res://manifests/sfx_manifest.category.translation", "res://manifests/sfx_manifest.format.translation", "res://manifests/sfx_manifest.settings.translation"]
+
+[params]
+
+compress=true
+delimiter=0

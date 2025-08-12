@@ -1,19 +1,21 @@
-extends Node3D
-@export var move_speed:float = 6.0
-var _move_target: Vector3
-var _has_target := false
+extends CharacterBody3D
+
+var speed := 6.0
+var target := Vector3.ZERO
+
 func _ready() -> void:
-	add_to_group('player_pawn')
+    add_to_group("player_pawn")
+    target = global_position
+
 func set_move_target(p: Vector3) -> void:
-	_move_target = Vector3(p.x, 0.0, p.z)
-	_has_target = true
-func _process(delta: float) -> void:
-	if _has_target:
-		var to := _move_target - global_position
-		to.y = 0.0
-		var d := to.length()
-		if d < 0.1:
-			_has_target = false
-			return
-		var dir := to.normalized()
-		global_position += dir * move_speed * delta
+    target = p
+
+func _physics_process(delta: float) -> void:
+    var dir := (target - global_position)
+    dir.y = 0.0
+    if dir.length() > 0.2:
+        velocity = dir.normalized() * speed
+        look_at(global_position + dir.normalized(), Vector3.UP)
+    else:
+        velocity = Vector3.ZERO
+    move_and_slide()

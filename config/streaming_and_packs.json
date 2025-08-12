@@ -1,0 +1,19 @@
+{
+  "music_streaming_paths": [
+    "res://audio/music/"
+  ],
+  "vo_packs": {
+    "cn": "res://packs/vo_cn.pck",
+    "en": "res://packs/vo_en.pck"
+  },
+  "district_packs": [
+    "res://packs/district_slums.pck",
+    "res://packs/district_industrial.pck",
+    "res://packs/district_uptown.pck",
+    "res://packs/wasteland.pck",
+    "res://packs/underground.pck"
+  ],
+  "video_streaming_paths": [
+    "res://video/"
+  ]
+}

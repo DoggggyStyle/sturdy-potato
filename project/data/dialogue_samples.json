@@ -1,0 +1,40 @@
+[
+  {
+    "id": "l001",
+    "text": "生在噪点里，别怕失真。",
+    "culture": "street_low",
+    "tags": {
+      "context": [
+        "idle",
+        "night"
+      ]
+    },
+    "cooldown_s": 600,
+    "layer": "暗梗"
+  },
+  {
+    "id": "l018",
+    "text": "风不问归期，电只问负载。",
+    "culture": "wasteland",
+    "tags": {
+      "context": [
+        "deploy",
+        "travel"
+      ]
+    },
+    "cooldown_s": 600,
+    "layer": "显梗"
+  },
+  {
+    "id": "l057",
+    "text": "真正的力量，在谁控制舞台灯光。",
+    "culture": "elite",
+    "tags": {
+      "context": [
+        "boss_intro"
+      ]
+    },
+    "cooldown_s": 900,
+    "layer": "原创"
+  }
+]

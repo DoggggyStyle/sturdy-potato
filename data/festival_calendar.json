@@ -1,0 +1,30 @@
+[
+  {
+    "id": "neon_fashion_week",
+    "day": 3,
+    "hour": 20,
+    "buffs": [
+      "shop_discount",
+      "show_lights"
+    ],
+    "music_profile": "haute"
+  },
+  {
+    "id": "wasteland_rally",
+    "day": 6,
+    "hour": 14,
+    "buffs": [
+      "bounty_up"
+    ],
+    "music_profile": "neo_folk"
+  },
+  {
+    "id": "remembrance_night",
+    "day": 9,
+    "hour": 22,
+    "buffs": [
+      "crime_down"
+    ],
+    "music_profile": "noir_jazz"
+  }
+]

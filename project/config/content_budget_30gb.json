@@ -1,0 +1,62 @@
+{
+  "target_install_gb": 30.0,
+  "reserve_overhead_gb": 1.5,
+  "content_buckets": [
+    {
+      "name": "Music (OPUS streamed)",
+      "target_gb": 4.0,
+      "notes": "~100 tracks, multi-layer; 160\u2013192 kbps OPUS"
+    },
+    {
+      "name": "SFX Library",
+      "target_gb": 1.6,
+      "notes": "~4000 SFX OGG q4"
+    },
+    {
+      "name": "Voice-Over",
+      "target_gb": 0.0,
+      "notes": "Text-only baseline; VO via Workshop optional"
+    },
+    {
+      "name": "Sprites/TileSets/Portraits",
+      "target_gb": 6.0,
+      "notes": "HD atlases incl. fashion variants, BC7/ETC2"
+    },
+    {
+      "name": "Maps & Prefabs",
+      "target_gb": 5.0,
+      "notes": "More districts + variants (day/night/weather)"
+    },
+    {
+      "name": "Cutscenes (webm vp9)",
+      "target_gb": 3.5,
+      "notes": "12\u201316 cinematics @1080p30 5\u20136 Mbps"
+    },
+    {
+      "name": "UI/Fonts/Localization",
+      "target_gb": 1.2,
+      "notes": "Bitmap fonts per language + icons"
+    },
+    {
+      "name": "Shaders/FX Atlases",
+      "target_gb": 0.8,
+      "notes": "Large FX sheets, animated lightmaps"
+    },
+    {
+      "name": "Mods/Workshop Examples",
+      "target_gb": 1.2,
+      "notes": "Curated high-quality starter mods"
+    },
+    {
+      "name": "Optional HD Texture Pack",
+      "target_gb": 5.0,
+      "notes": "Separate depot; togglable in-game"
+    },
+    {
+      "name": "Buffer/Unforeseen",
+      "target_gb": 0.7,
+      "notes": "safety margin"
+    }
+  ],
+  "total_gb": 30.0
+}

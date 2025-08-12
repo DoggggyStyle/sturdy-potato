@@ -1,0 +1,31 @@
+{
+  "audio": {
+    "music_codec": "OPUS",
+    "music_bitrate_kbps": 160,
+    "music_streamed": true,
+    "vo_codec": "OPUS",
+    "vo_bitrate_kbps": 128,
+    "sfx_codec": "OGG",
+    "sfx_quality_q": 4
+  },
+  "video": {
+    "format": "webm",
+    "codec": "vp9",
+    "bitrate_mbps": 5.0,
+    "framerate": "30",
+    "resolution": "1920x1080"
+  },
+  "textures": {
+    "desktop_format": "BC7",
+    "mobile_format": "ETC2",
+    "max_size_px": 2048,
+    "atlasing": true,
+    "mipmaps": true
+  },
+  "godot": {
+    "export_pck_split_mb": 4096,
+    "resource_compression_mode": "lossless",
+    "pack_only_used_resources": true,
+    "threaded_loader": true
+  }
+}

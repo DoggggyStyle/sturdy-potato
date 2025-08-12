@@ -1,64 +1,81 @@
 extends Node3D
-@export var move_speed:float = 20.0
-@export var rotate_speed:float = 0.015
-@export var zoom_speed:float = 4.0
-@export var min_distance:float = 6.0
-@export var max_distance:float = 60.0
-@export var min_pitch:float = deg_to_rad(15.0)
-@export var max_pitch:float = deg_to_rad(80.0)
-var _cam: Camera3D
-var _target: Vector3 = Vector3.ZERO
-var _distance: float = 20.0
-var _yaw: float = 0.0
-var _pitch: float = deg_to_rad(45.0)
-var _rotating := false
-var _panning := false
-func _ready() -> void:
-	_cam = $Camera3D if has_node('Camera3D') else null
-	if _cam == null:
-		_cam = Camera3D.new()
-		add_child(_cam)
-	_cam.current = true
-	_update_camera()
-func _process(delta: float) -> void:
-	var pan := Vector3.ZERO
-	if Input.is_key_pressed(KEY_W): pan += Vector3.FORWARD
-	if Input.is_key_pressed(KEY_S): pan += Vector3.BACK
-	if Input.is_key_pressed(KEY_A): pan += Vector3.LEFT
-	if Input.is_key_pressed(KEY_D): pan += Vector3.RIGHT
-	if pan != Vector3.ZERO:
-		pan = pan.normalized()
-		var basis := Basis(Vector3.UP, _yaw)
-		var dir := (basis * pan).normalized()
-		_target += dir * move_speed * delta
-	_update_camera()
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		var mb := event as InputEventMouseButton
-		if mb.button_index == MOUSE_BUTTON_RIGHT:
-			_rotating = mb.pressed
-		elif mb.button_index == MOUSE_BUTTON_MIDDLE:
-			_panning = mb.pressed
-		elif mb.button_index == MOUSE_BUTTON_WHEEL_UP and mb.pressed:
-			_distance = clamp(_distance - zoom_speed, min_distance, max_distance); _update_camera()
-		elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN and mb.pressed:
-			_distance = clamp(_distance + zoom_speed, min_distance, max_distance); _update_camera()
-	elif event is InputEventMouseMotion:
-		var mm := event as InputEventMouseMotion
-		if _rotating:
-			_yaw -= mm.relative.x * rotate_speed
-			_pitch = clamp(_pitch - mm.relative.y * rotate_speed, min_pitch, max_pitch)
-			_update_camera()
-		elif _panning:
-			var basis := Basis(Vector3.UP, _yaw)
-			_target += (basis.x * -mm.relative.x + basis.z * mm.relative.y) * 0.03
-			_update_camera()
-func _update_camera() -> void:
-	var offset := Vector3(
-		_distance * sin(_yaw) * cos(_pitch),
-		_distance * sin(_pitch),
-		_distance * cos(_yaw) * cos(_pitch)
-	)
-	_cam.position = _target + offset
-	_cam.look_at(_target, Vector3.UP)
-	self.position = _target
+
+@export var pan_speed := 24.0
+@export var rot_speed := 0.02
+@export var zoom_speed := 2.0
+@export var min_height := 6.0
+@export var max_height := 40.0
+@export var yaw := 0.0
+@export var pitch := -0.6
+
+var dragging_rotate := false
+var dragging_pan := false
+var last_mouse := Vector2.ZERO
+
+func _ready():
+    set_process_unhandled_input(true)
+
+func _unhandled_input(event):
+    if event is InputEventMouseButton:
+        if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+            _zoom(-1.0)
+        elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+            _zoom(1.0)
+        elif event.button_index == MOUSE_BUTTON_RIGHT:
+            dragging_rotate = event.pressed
+            last_mouse = event.position
+        elif event.button_index == MOUSE_BUTTON_MIDDLE:
+            dragging_pan = event.pressed
+            last_mouse = event.position
+        elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+            _try_move_player_to_mouse()
+
+    elif event is InputEventMouseMotion:
+        if dragging_rotate:
+            var delta := event.relative
+            yaw -= delta.x * rot_speed * 0.01
+            pitch -= delta.y * rot_speed * 0.01
+            pitch = clamp(pitch, -1.2, -0.1)
+        elif dragging_pan:
+            var d := event.relative
+            var right := global_transform.basis.x
+            var forward := -global_transform.basis.z
+            translation += (-right * d.x + -forward * d.y) * 0.02
+
+func _process(delta):
+    var v := Vector3.ZERO
+    if Input.is_key_pressed(KEY_W): v += -global_transform.basis.z
+    if Input.is_key_pressed(KEY_S): v += global_transform.basis.z
+    if Input.is_key_pressed(KEY_A): v += -global_transform.basis.x
+    if Input.is_key_pressed(KEY_D): v += global_transform.basis.x
+    if v != Vector3.ZERO:
+        translation += v.normalized() * pan_speed * delta
+
+    var t := Transform3D.BasisXform(Basis(), Vector3.ZERO)
+    var rot := Basis()
+    rot = Basis.from_euler(Vector3(pitch, yaw, 0.0))
+    rotation = rot.get_euler()
+
+    var h := clamp(translation.y, min_height, max_height)
+    translation.y = h
+
+func _zoom(dir: float):
+    translation.y = clamp(translation.y + dir * zoom_speed, min_height, max_height)
+
+func _try_move_player_to_mouse():
+    var vp := get_viewport()
+    var cam := get_node_or_null("Camera3D")
+    if cam == null:
+        cam = find_child("Camera3D", true, false)
+    if cam == null:
+        return
+    var mpos := vp.get_mouse_position()
+    var from := cam.project_ray_origin(mpos)
+    var to := from + cam.project_ray_normal(mpos) * 200.0
+    var space := get_world_3d().direct_space_state
+    var res := space.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
+    if res and res.has("position"):
+        var dest := res["position"]
+        var player := get_tree().get_first_node_in_group("player_pawn")
+        if player and player.has_method("set_move_target"):
+            player.set_move_target(dest)

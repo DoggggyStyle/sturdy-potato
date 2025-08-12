@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c6tn60gp4h5hu"
+
+[deps]
+
+files=["res://manifests/music_manifest.profile.translation", "res://manifests/music_manifest.length.translation", "res://manifests/music_manifest.notes.translation"]
+
+source_file="res://manifests/music_manifest.csv"
+dest_files=["res://manifests/music_manifest.profile.translation", "res://manifests/music_manifest.length.translation", "res://manifests/music_manifest.notes.translation"]
+
+[params]
+
+compress=true
+delimiter=0

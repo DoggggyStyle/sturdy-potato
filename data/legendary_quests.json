@@ -1,0 +1,42 @@
+[
+  {
+    "id": "legend_black_sun",
+    "name_cn": "黑日协议",
+    "steps": [
+      {
+        "do": "盗取能源塔权限密钥",
+        "region": "inner_city_sector7"
+      },
+      {
+        "do": "在黑市拍卖会上交易假密钥，挑起派系冲突",
+        "region": "slum_market"
+      },
+      {
+        "do": "摧毁备用反应堆核心",
+        "region": "reactor_depths"
+      }
+    ],
+    "reward": "独特义体：战术神经网络",
+    "side_effect": "上城区断电三天，夜间敌人刷新翻倍"
+  },
+  {
+    "id": "legend_void_chorus",
+    "name_cn": "虚空合唱",
+    "steps": [
+      {
+        "do": "搜集三段声裂录音",
+        "region": "ruined_hall"
+      },
+      {
+        "do": "在卫星站完成频率对准",
+        "region": "satellite_outpost"
+      },
+      {
+        "do": "用声波摧毁Boss：声裂巨喉",
+        "region": "hollow_stage"
+      }
+    ],
+    "reward": "一次性音波冲击模块",
+    "side_effect": "部分建筑坍塌"
+  }
+]

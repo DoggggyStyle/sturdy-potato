@@ -1,0 +1,17 @@
+{
+  "name": "NeonDust",
+  "colors": {
+    "bg_dark": "#0b0f14",
+    "bg_mid": "#141a22",
+    "panel": "#1d2633",
+    "accent": "#00ffd1",
+    "accent2": "#ff3efc",
+    "warn": "#ff7a00",
+    "hp": "#ff3b30",
+    "mp": "#29a8ff",
+    "text": "#cfe3ff",
+    "muted": "#7b8ba1",
+    "gold": "#f1c40f",
+    "success": "#00e676"
+  }
+}

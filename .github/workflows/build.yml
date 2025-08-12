@@ -1,9 +1,113 @@
-- - name: Verify files
-  run: |
-    set -euo pipefail
-    echo "Check required files…"
-    test -f project/project.godot             || { echo "❌ missing project/project.godot"; exit 1; }
-    test -f project/export_presets.cfg        || { echo "❌ missing project/export_presets.cfg"; exit 1; }
-    test -f project/scenes/Main.tscn          || { echo "❌ missing project/scenes/Main.tscn"; exit 1; }
-    test -f project/scripts/camera/RTSCamera_Pro.gd || { echo "❌ missing RTSCamera_Pro.gd"; exit 1; }
-    echo "✅ required files ok"
+name: build (Godot 4.4.1) → Win/Linux/Web + Artifacts + Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VER: "4.4.1"
+      GODOT: godot
+      PROJ: project
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ===== 核心文件自检（缺哪个就打印并失败）=====
+      - name: Verify files
+        run: |
+          set -euo pipefail
+          fail=0
+          for f in \
+            $PROJ/project.godot \
+            $PROJ/export_presets.cfg \
+            $PROJ/scenes/Main.tscn \
+            $PROJ/scripts/camera/RTSCamera_Pro.gd \
+          ; do
+            if [ ! -f "$f" ]; then
+              echo "❌ missing $f"; fail=1
+            else
+              echo "✅ $f"
+            fi
+          done
+          exit $fail
+
+      # ===== 安装 Godot CLI（headless）=====
+      - name: Install Godot ${{ env.VER }} headless
+        run: |
+          set -e
+          wget -q https://downloads.tuxfamily.org/godotengine/${VER}/Godot_v${VER}-stable_linux.x86_64.zip -O godot.zip
+          unzip -q godot.zip -d godota && rm godot.zip
+          sudo mv godota/Godot_v${VER}-stable_linux.x86_64 /usr/local/bin/${GODOT}
+          sudo chmod +x /usr/local/bin/${GODOT}
+          ${GODOT} --version
+
+      # ===== 安装导出模板（仅放在runner本地，不进仓库）=====
+      - name: Install export templates
+        run: |
+          set -e
+          mkdir -p ~/.local/share/godot/export_templates/${VER}.stable/
+          wget -q https://downloads.tuxfamily.org/godotengine/${VER}/Godot_v${VER}-stable_export_templates.tpz -O t.tpz
+          unzip -q t.tpz -d ~/.local/share/godot/export_templates/${VER}.stable/ && rm t.tpz
+
+      # ===== 语法/加载检查（让云端和本地一致暴露脚本问题）=====
+      - name: Syntax check (load project)
+        run: |
+          set -e
+          ${GODOT} --headless --path ${PROJ} --quit
+
+      # ===== Export: Linux =====
+      - name: Export Linux (X11)
+        run: |
+          set -e
+          mkdir -p Build/Linux
+          ${GODOT} --headless --path ${PROJ} --export-release "Linux/X11" ./Build/Linux/UltimateHacker.x86_64
+          chmod +x Build/Linux/UltimateHacker.x86_64
+
+      # ===== Export: Windows =====
+      - name: Export Windows (Desktop)
+        run: |
+          set -e
+          mkdir -p Build/Windows
+          ${GODOT} --headless --path ${PROJ} --export-release "Windows Desktop" ./Build/Windows/UltimateHacker.exe
+
+      # ===== Export: Web =====
+      - name: Export Web (HTML5)
+        run: |
+          set -e
+          mkdir -p Build/Web
+          ${GODOT} --headless --path ${PROJ} --export-release "Web" ./Build/Web/index.html
+
+      # ===== 上传构建产物 =====
+      - name: Upload artifacts (Linux + Windows + Web)
+        uses: actions/upload-artifact@v4
+        with:
+          name: builds
+          path: |
+            Build/Linux/**
+            Build/Windows/**
+            Build/Web/**
+
+      # 供 Pages 使用的工件（若存在 Web 版本）
+      - name: Upload Pages artifact
+        if: ${{ hashFiles('Build/Web/index.html') != '' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Build/Web
+
+  deploy-pages:
+    needs: build
+    if: ${{ always() && needs.build.result == 'success' }}
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

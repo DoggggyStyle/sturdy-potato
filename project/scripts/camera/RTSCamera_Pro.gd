@@ -22,7 +22,7 @@ class_name RTSCamera
 @export var bounds_min := Vector2(-200.0, -200.0)
 @export var bounds_max := Vector2( 200.0,  200.0)
 @export var min_ground_clearance := 2.0
-@export var ground_mask := 1
+@export var g: Vector3round_mask := 1
 @export var ray_length := 5000.0
 
 signal centered_on(target)
@@ -171,7 +171,7 @@ func _clamp_to_bounds() -> void:
 func _keep_over_ground() -> void:
 	var hit := _raycast_at_position(Vector3(_target_pos.x, 1000.0, _target_pos.z), Vector3.DOWN)
 	if hit.has("position"):
-		var g := hit.position
+		var g: Vector3 := hit.position
 		if _target_pos.y < g.y + min_ground_clearance:
 			_target_pos.y = g.y + min_ground_clearance
 
@@ -193,4 +193,4 @@ func _raycast_at_position(from: Vector3, dir: Vector3) -> Dictionary:
 
 func _intersect_ray(from: Vector3, to: Vector3) -> Dictionary:
 	var q := PhysicsRayQueryParameters3D.create(from, to, ground_mask)
-	return get_world_3d().direct_space_state.intersect_ray(q)
+	return get_world().direct_space_state.intersect_ray(q)

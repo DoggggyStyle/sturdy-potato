@@ -35,7 +35,7 @@ func _unhandled_input(e: InputEvent) -> void:
 			_toggle_follow()
 
 func _select_under_mouse() -> void:
-	var hit := _ray_to_unit()
+	var hit: Dictionary := _ray_to_unit()
 	if hit == null:
 		selected.clear()
 		return
@@ -67,7 +67,7 @@ func _ray_to_ground() -> Vector3:
 	var dir := cam.project_ray_normal(m)
 	var to := from + dir * 5000.0
 	var q := PhysicsRayQueryParameters3D.create(from, to, ground_mask)
-	var hit := get_world_3d().direct_space_state.intersect_ray(q)
+	var hit: Dictionary := get_world().direct_space_state.intersect_ray(q)
 	if hit.has("position"):
 		return hit.position
 	return null
@@ -78,7 +78,7 @@ func _ray_to_unit() -> Node3D:
 	var dir := cam.project_ray_normal(m)
 	var to := from + dir * 5000.0
 	var q := PhysicsRayQueryParameters3D.create(from, to, unit_mask)
-	var hit := get_world_3d().direct_space_state.intersect_ray(q)
+	var hit: Dictionary := get_world().direct_space_state.intersect_ray(q)
 	if hit.has("collider") and hit.collider is Node3D and hit.collider.is_in_group("unit"):
 		return hit.collider
 	return null

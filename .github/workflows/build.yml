@@ -27,6 +27,9 @@ jobs:
           wget -q https://github.com/godotengine/godot-builds/releases/download/${VER}-stable/Godot_v${VER}-stable_export_templates.tpz -O t.tpz
           unzip -q t.tpz -d ~/.local/share/godot/export_templates/${VER}.stable
 
+      - name: Syntax check (preload all scripts)
+        run: godot4 --headless --path project -s res://ci/check_all.gd
+
       - name: Verify project loads
         run: godot4 --headless --path project --quit
 
@@ -41,40 +44,30 @@ jobs:
           mkdir -p Build/Web
           godot4 --headless --path project --export-release "Web" ../Build/Web/index.html
 
-      - name: Upload artifacts (Linux + Web)
+      - name: Export Windows
+        run: |
+          mkdir -p Build/Windows
+          godot4 --headless --path project --export-release "Windows Desktop" ../Build/Windows/UltimateHacker.exe
+
+      - name: Upload artifacts (Linux + Web + Windows)
         uses: actions/upload-artifact@v4
         with:
           name: builds
           path: |
             Build/Linux
             Build/Web
+            Build/Windows
 
-deploy-pages:
-  needs: build
-  runs-on: ubuntu-latest
-  permissions:
-    pages: write
-    id-token: write
-  steps:
-    - uses: actions/download-artifact@v4
-    - name: Upload Windows build
-      uses: actions/upload-artifact@v4
-      with:
-        name: Windows
-        path: Build/Windows
-
-- name: Export Windows
-  run: |
-    mkdir -p Build/Windows
-    godot --headless --path project --export-release "Windows Desktop" ../Build/Windows/UltimateHacker.exe
-
-- name: Export Linux
-  run: |
-    mkdir -p Build/Linux
-    godot --headless --path project --export-release "Linux/X11" ../Build/Linux/UltimateHacker.x86_64
-    chmod +x Build/Linux/UltimateHacker.x86_64
-
-- name: Export Web
-  run: |
-    mkdir -p Build/Web
-    godot --headless --path project --export-release "Web" ../Build/Web/index.html
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: Deploy Web
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Build/Web
